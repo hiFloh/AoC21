@@ -1,0 +1,34 @@
+/**
+ * @author Florian Gapp
+ * @date 01.12.2021
+ *
+ * Main program selecting and executing tasks from Advent of Code(https://adventofcode.com/)
+ */
+
+#include "D1/D1.h"
+#include <iostream>
+
+int main(int argc,char**argv) {
+    std::vector<std::string> args;
+    for(int i=0;i<argc;i++)
+    {
+        args.push_back(std::string(argv[i]));
+    }
+
+    if(args.size()>1)
+    {
+        size_t day=stoi(args[1]);
+        args.erase(++args.cbegin());
+        switch (day) {
+            case 1:
+                return D1::mmain(args);
+        }
+    }
+    else
+    {
+        std::cout<<"x";
+    }
+
+
+    return 0;
+}
