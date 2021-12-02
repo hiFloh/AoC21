@@ -6,6 +6,7 @@
  */
 
 #include "D1/D1.h"
+#include "D2/D2.h"
 #include <iostream>
 
 int main(int argc,char**argv) {
@@ -22,6 +23,8 @@ int main(int argc,char**argv) {
         switch (day) {
             case 1:
                 return D1::mmain(args);
+            case 2:
+                return D2::mmain(args);
         }
     }
     else
