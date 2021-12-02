@@ -2,7 +2,7 @@
  * @author Florian Gapp
  * @date 01.12.21
  *
- * header for Day 1 of AoC (https://adventofcode.com/)
+ * code for Day 1 of AoC (https://adventofcode.com/)
  */
 
 
