@@ -15,23 +15,31 @@ public:
     std::string dir;
 };
 
-class shipp{
+class ship{
 public:
     void execute(Command const&c);
     int getX()const;
     int getY()const;
 
 protected:
+    virtual void up(int i);
+    virtual void down(int i);
+    virtual void forward(int i);
+
     int x=0;
     int y=0;
 };
 
-class shipp2:public shipp{
-public:
-    void execute(Command const&c);
+class ship2: public ship{
 
 protected:
     int aim =0;
+
+    void up(int i) override;
+
+    void down(int i) override;
+
+    void forward(int i) override;
 };
 
 std::istream &operator>>(std::istream&input,Command&C);

@@ -42,4 +42,5 @@ std::vector<T> readFile(std::string filename)
     return values;
 }
 
+
 #endif //AOC21_LIB_H

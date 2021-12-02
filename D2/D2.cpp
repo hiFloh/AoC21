@@ -6,7 +6,6 @@
 #include "../lib.h"
 
 int D2::mmain(const std::vector<std::string> &args) {
-//    std::string  filename="../test.txt";
     std::string  filename="../D2/D2.txt";
     if(args.size()>=2)
     {
@@ -14,8 +13,8 @@ int D2::mmain(const std::vector<std::string> &args) {
     }
 
     auto xx=readFile<Command>(filename);
-    shipp s;
-    shipp2 s2;
+    ship s;
+    ship2 s2;
     for(auto x:xx)
     {
         s.execute(x);
@@ -28,18 +27,18 @@ int D2::mmain(const std::vector<std::string> &args) {
 
 }
 
-void shipp::execute(const Command &c) {
+void ship::execute(const Command &c) {
     if(c.dir=="forward")
     {
-        x+=c.value;
+        forward(c.value);
     }
     else if(c.dir=="up")
     {
-        y-=c.value;
+        up(c.value);
     }
     else if(c.dir=="down")
     {
-        y+=c.value;
+        down(c.value);
     }
     else
     {
@@ -47,12 +46,24 @@ void shipp::execute(const Command &c) {
     }
 }
 
-int shipp::getX() const {
+int ship::getX() const {
     return x;
 }
 
-int shipp::getY() const {
+int ship::getY() const {
     return y;
+}
+
+void ship::up(int i) {
+    y-=i;
+}
+
+void ship::down(int i) {
+    y+=i;
+}
+
+void ship::forward(int i) {
+    x+=i;
 }
 
 std::istream &operator>>(std::istream&input,Command&C)
@@ -61,22 +72,15 @@ input>>C.dir>>C.value;
 return  input;
 }
 
-void shipp2::execute(const Command &c) {
-    if(c.dir=="forward")
-    {
-        x+=c.value;
-        y+=aim*c.value;
-    }
-    else if(c.dir=="up")
-    {
-        aim-=c.value;
-    }
-    else if(c.dir=="down")
-    {
-        aim+=c.value;
-    }
-    else
-    {
-        throw std::string("unkonwn command");
-    }
+void ship2::up(int i) {
+    aim-=i;
+}
+
+void ship2::down(int i) {
+    aim+=i;
+}
+
+void ship2::forward(int i) {
+    x+=i;
+    y+=aim*i;
 }
