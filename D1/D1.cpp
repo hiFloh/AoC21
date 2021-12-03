@@ -68,4 +68,5 @@ int D1::mmain(std::vector<std::string> const&args) {
     auto increasedAverage= getHeight(HeightProfileAverage);
     std::cout <<"Part1: "<< increased << " times increased"<<std::endl;
     std::cout <<"Part2: " << increasedAverage<< " times increased"<<std::endl;
+    return EXIT_SUCCESS;
 }

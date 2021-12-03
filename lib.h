@@ -43,4 +43,6 @@ std::vector<T> readFile(std::string filename)
 }
 
 
+using arguments=std::vector<std::string>;
+
 #endif //AOC21_LIB_H

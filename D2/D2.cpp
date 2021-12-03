@@ -124,5 +124,5 @@ int D2::mmain(const std::vector<std::string> &args) {
     std::cout<<"task1: x="<<s.getX()<<", y="<<s.getY()<<", x*y="<<s.getX()*s.getY()<<std::endl;
     std::cout<<"task2: x="<<s2.getX()<<", y="<<s2.getY()<<", x*y="<<s2.getX()*s2.getY()<<std::endl;
 
-
+    return EXIT_SUCCESS;
 }
