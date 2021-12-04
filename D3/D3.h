@@ -1,7 +1,9 @@
-//
-// Created by flori on 02.12.21.
-//
-
+/**
+ * @author Florian Gapp
+ * @date 03.12.21
+ *
+ * header for Day 3 of AoC (https://adventofcode.com/)
+ */
 #ifndef AOC21_D3_H
 #define AOC21_D3_H
 

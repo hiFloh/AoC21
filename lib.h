@@ -43,6 +43,9 @@ std::vector<T> readFile(std::string filename)
 }
 
 
+std::vector<std::string> stringSplit(std::string src,std::string pattern);
+
+
 using arguments=std::vector<std::string>;
 
 #endif //AOC21_LIB_H
