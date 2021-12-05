@@ -10,7 +10,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
-
+#include <chrono>
+#include <iostream>
 /**
  *
  * @tparam T type of data
@@ -42,10 +43,16 @@ std::vector<T> readFile(std::string filename)
     return values;
 }
 
-
+/**
+ * splits string at pattern
+ * @param src string to split
+ * @param pattern pattern to search for
+ * @return vector containing all parts
+ */
 std::vector<std::string> stringSplit(std::string src,std::string pattern);
 
-
 using arguments=std::vector<std::string>;
+
+
 
 #endif //AOC21_LIB_H

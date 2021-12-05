@@ -9,6 +9,7 @@
 #include "D2/D2.h"
 #include "D3/D3.h"
 #include "D4/D4.h"
+#include "D5/D5.h"
 #include <iostream>
 
 int main(int argc,char**argv) {
@@ -31,6 +32,8 @@ int main(int argc,char**argv) {
                 return D3::mmain(args);
             case 4:
                 return D4::mmain(args);
+            case 5:
+                return D5::mmain(args);
         }
     }
     else

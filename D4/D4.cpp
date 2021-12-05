@@ -1,6 +1,9 @@
-//
-// Created by flori on 04.12.21.
-//
+/**
+ * @author Florian Gapp
+ * @date 04.12.21
+ *
+ * code for Day 4 of AoC (https://adventofcode.com/)
+ */
 
 #include "D4.h"
 #include <sstream>
@@ -13,6 +16,8 @@ int D4::mmain(arguments args) {
     {
         filename=args[1];
     }
+
+    // read entire input file
     std::string input;
     std::fstream file;
     file.open(filename,std::fstream::in);
@@ -22,6 +27,7 @@ int D4::mmain(arguments args) {
         input.append(s+"\n");
     } while (file.good());
 
+    // remove double space
     std::string::size_type pos;
     do{
         pos=input.find("  ",pos);
@@ -29,7 +35,7 @@ int D4::mmain(arguments args) {
             input.replace(pos,2," ");
     } while (pos!=std::string::npos);
 
-
+    // remove space at linestart
     pos=0;
     do{
         pos=input.find("\n ",pos);
@@ -37,22 +43,26 @@ int D4::mmain(arguments args) {
             input.replace(pos,2,"\n");
     } while (pos!=std::string::npos);
 
-    auto x= stringSplit(input,"\n\n");
-
-    auto sdraws= stringSplit(x[0],",");
+    // split sBoards
+    auto sBoards= stringSplit(input, "\n\n");
+    //split draws
+    auto sDraws= stringSplit(sBoards[0], ",");
     std::vector<size_t> draws;
-    for(auto sdraw:sdraws)
+    //convert draws to int
+    for(auto sDraw:sDraws)
     {
-        draws.push_back(stoi(sdraw));
+        draws.push_back(stoi(sDraw));
     }
-    x.erase(x.begin(),++x.begin());
+    sBoards.erase(sBoards.begin(), ++sBoards.begin());
+    // convert bingoboards
     std::vector<BingoBoard> boards;
-    for(auto xx:x)
+    for(auto xx:sBoards)
     {
         boards.emplace_back(xx);
     }
-
+    //execute Part1
     P1(boards,draws);
+    //execute Part2
     P2(boards,draws);
     return 0;
 }
@@ -65,67 +75,71 @@ int D4::P1(std::vector<BingoBoard> boards,std::vector<size_t> draws)
         {
             if(boards[i].set(draw))
             {
-                auto f=boards[i].calc1();
-                std::cout<<f*draw<<std::endl;
+                auto f= boards[i].addUpNonHitFields();
+                std::cout<<"part 1 result is "<<f*draw<<std::endl;
                 return 0;
             }
         }
     }
+    return -1;
 }
 
 int D4::P2(std::vector<BingoBoard> boards, std::vector<size_t> draws) {
-    std::vector<std::size_t> board_ids;
+    std::vector<std::size_t> boardsInGame;
     for(int i=0;i<boards.size();i++)
     {
-        board_ids.push_back(i);
+        boardsInGame.push_back(i);
     }
 
     for(auto draw:draws)
     {
-        bool somethingToErase= false;
-        std::vector<std::size_t> toErase;
-        for(size_t i=0;i<board_ids.size();i++) {
-            if (boards[board_ids[i]].set(draw)) {
-                if (board_ids.size() == 1) {
-                    auto f = boards[board_ids[i]].calc1();
-                    std::cout << f * draw << std::endl;
+        bool boardHasWon= false;
+        std::vector<std::size_t> boardsWon;
+        for(size_t i=0; i < boardsInGame.size(); i++) {
+            if (boards[boardsInGame[i]].set(draw)) {
+                if (boardsInGame.size() == 1)
+                {// if last board won
+                    auto f = boards[boardsInGame[i]].addUpNonHitFields();
+                    std::cout<<"part 2 result is "<<f*draw<<std::endl;
                     return 0;
-                } else {
-                    somethingToErase = true;
-                    toErase.push_back(board_ids[i]);
+                }
+                else
+                { // register board for delete
+                    boardHasWon = true;
+                    boardsWon.push_back(boardsInGame[i]);
                 }
             }
         }
-        if(somethingToErase)
+        //delete all boards which won
+        if(boardHasWon)
         {
-            for(auto erase:toErase) {
-                auto pos = std::find(board_ids.cbegin(), board_ids.cend(), erase);
-                board_ids.erase(pos);
+            for(auto boardWon:boardsWon) {
+                boardsInGame.erase(std::find(boardsInGame.cbegin(), boardsInGame.cend(), boardWon));
             }
         }
-
     }
+    return -1;
 }
 
 BingoBoard::BingoBoard(std::string s) {
-    auto xx= stringSplit(s,"\n");
-    for(auto x:xx)
+    auto sRows= stringSplit(s, "\n");
+    for(auto sRow:sRows)
     {
-        std::vector<boardType> r;
-        std::vector<bool> hr;
-        auto yy= stringSplit(x," ");
-        for(auto y:yy)
+        std::vector<boardType> rowVal;
+        std::vector<bool> rowHit;
+        auto sCols= stringSplit(sRow, " ");
+        for(auto col:sCols)
         {
-            if(y!="");
-                r.push_back(stoi(y));
+            if(col != "");
+                rowVal.push_back(stoi(col));
         }
-        hr.resize(r.size());
-        hits.push_back(hr);
-        board.push_back(r);
+        rowHit.resize(rowVal.size());
+        hits.push_back(rowHit);
+        board.push_back(rowVal);
     }
 }
 
-size_t BingoBoard::calc1() {
+size_t BingoBoard::addUpNonHitFields() {
     size_t ret=0;
     for(size_t x=0;x<hits.size();x++)
     {
