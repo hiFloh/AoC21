@@ -7,6 +7,7 @@
 
 #include <iterator>
 #include <algorithm>
+#include <execution>
 #include "D6.h"
 
 int D6::mmain(arguments args) {
@@ -28,7 +29,7 @@ void D6::P1(std::vector<input_type> &input) {
     std::copy(fishs.begin(), fishs.end(), std::ostream_iterator<Fish>(std::cout, ","));
     std::cout<<std::endl;
     for(int i=0;i<80;i++) {
-        size_t newFish=std::count_if(fishs.begin(),fishs.end(),[](Fish &f){return f.grow();});
+        size_t newFish=std::count_if(std::execution::par, fishs.begin(),fishs.end(),[](Fish &f){return f.grow();});
         for(int f=0;f<newFish;f++)
         {
             Fish fish;
@@ -45,7 +46,8 @@ void D6::P2(std::vector<input_type> &input) {
     std::copy(fishs.begin(), fishs.end(), std::ostream_iterator<Fish>(std::cout, ","));
     std::cout<<std::endl;
     for(int i=0;i<256;i++) {
-        size_t newFish=std::count_if(fishs.begin(),fishs.end(),[](Fish &f){return f.grow();});
+        size_t newFish=std::count_if(std::execution::par, fishs.begin(),fishs.end(),[](Fish &f){return f.grow();});
+        //size_t newFish=std::count_if(fishs.begin(),fishs.end(),[](Fish &f){return f.grow();});
         for(int f=0;f<newFish;f++)
         {
             Fish fish;
