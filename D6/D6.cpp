@@ -21,7 +21,6 @@ int D6::mmain(arguments args) {
     P1(input);
     P2(input);
     return 0;
-    return 0;
 }
 
 void D6::P1(std::vector<input_type> &input) {
@@ -35,33 +34,38 @@ void D6::P1(std::vector<input_type> &input) {
             Fish fish;
             fishs.push_back(fish);
         }
-//        std::copy(fishs.begin(), fishs.end(), std::ostream_iterator<Fish>(std::cout, ","));
-//        std::cout<<std::endl;
     }
     std::cout<<fishs.size()<<std::endl;
 }
 
 void D6::P2(std::vector<input_type> &input) {
-    auto fishs=input;
-    std::copy(fishs.begin(), fishs.end(), std::ostream_iterator<Fish>(std::cout, ","));
-    std::cout<<std::endl;
-    for(int i=0;i<256;i++) {
-        size_t newFish=std::count_if(std::execution::par, fishs.begin(),fishs.end(),[](Fish &f){return f.grow();});
-        //size_t newFish=std::count_if(fishs.begin(),fishs.end(),[](Fish &f){return f.grow();});
-        for(int f=0;f<newFish;f++)
-        {
-            Fish fish;
-            fishs.push_back(fish);
-        }
-        std::cout<<i<<std::endl;
-//        std::copy(fishs.begin(), fishs.end(), std::ostream_iterator<Fish>(std::cout, ","));
-//        std::cout<<std::endl;
+
+    std::vector<size_t> fishCount;
+    fishCount.resize(9);
+    for(auto f : input)
+    {
+        fishCount[f.getAge()]++;
     }
-    std::cout<<fishs.size()<<std::endl;
+    for(int i=0;i<256;i++)
+    {
+        size_t newFisch=fishCount[0];
+        fishCount.erase(fishCount.begin());
+        fishCount[6]+=newFisch;
+        fishCount.push_back(newFisch);
+        size_t count=0;
+        for(auto f:fishCount)
+            count+=f;
+        std::cout<<i+1<<":"<<count<<std::endl;
+    }
+    size_t count=0;
+    for(auto f:fishCount)
+        count+=f;
 }
 
 Fish::Fish():age(8) {
-
+//26984457539
+//1976596756
+//2469055592
 }
 
 bool Fish::grow() {

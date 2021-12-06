@@ -17,7 +17,7 @@ public:
     size_t getAge() const;
     friend std::istream & operator>>(std::istream&ist,Fish & f);
 private:
-    uint8_t age;
+    short age;
 };
 std::istream & operator>>(std::istream&ist,Fish & f);
 std::ostream & operator<<(std::ostream&ost,Fish const&f);
