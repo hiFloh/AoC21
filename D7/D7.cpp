@@ -1,6 +1,9 @@
-//
-// Created by flori on 06.12.21.
-//
+/**
+ * @author Florian Gapp
+ * @date 07.12.21
+ *
+ * code for Day 7 of AoC (https://adventofcode.com/)
+ */
 
 #include <algorithm>
 #include "D7.h"

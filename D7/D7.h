@@ -1,6 +1,10 @@
-//
-// Created by flori on 06.12.21.
-//
+/**
+ * @author Florian Gapp
+ * @date 07.12.21
+ *
+ * header for Day 7 of AoC (https://adventofcode.com/)
+ */
+
 
 #ifndef AOC21_D7_H
 #define AOC21_D7_H
