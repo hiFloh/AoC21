@@ -26,7 +26,7 @@ int D6::mmain(arguments args) {
     auto t2=TimeMeasure::from();
     P2(input);
     t2.stop();
-    std::cout<<"Part1: "<<t1.getDurationInMilliseconds()<<"\nPart2: "<<t2.getDurationInMilliseconds()<<std::endl;
+    std::cout<<"Part1: "<<t1.getDuration<std::milli>()<<"\nPart2: "<<t2.getDuration<std::milli>()<<std::endl;
     return 0;
 }
 

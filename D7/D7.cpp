@@ -16,7 +16,7 @@ int D7::P1(std::vector<input_type>const &input) {
     {
         for(auto crabSub:input)
         {
-            heights[i]+=crabSub.simulate(i);
+            heights[i]+= crabSub.simulateMove1(i);
         }
     }
     auto idealHeight=std::min_element(heights.cbegin(),heights.cend());
@@ -33,7 +33,7 @@ int D7::P2(const std::vector<input_type> &input) {
     {
         for(auto crabSub:input)
         {
-            heights[i]+=crabSub.simulate2(i);
+            heights[i]+= crabSub.simulateMove2(i);
         }
     }
     auto idealHeight=std::min_element(heights.cbegin(),heights.cend());
@@ -53,23 +53,19 @@ size_t CrabSubmarine::getHeight() const {
     return height;
 }
 
-unsigned long CrabSubmarine::simulate(size_t i) {
+unsigned long CrabSubmarine::simulateMove1(size_t i) {
     return i < height ? (height - i) : (i - height);
 }
 
-unsigned int calcFuleV2(unsigned int n) {
+unsigned long CrabSubmarine::simulateMove2(size_t i) {
+    size_t diff = i > height ? i - height : height - i;
+
     unsigned int result=0;
-    for(unsigned int i=0;i<n;i++)
+    for(unsigned int i=0;i<diff;i++)
     {
         result+=i+1;
     }
     return result;
-}
-unsigned long CrabSubmarine::simulate2(size_t i) {
-    if (i > height)
-        return calcFuleV2(i - height);
-    else
-        return calcFuleV2(height - i);
 }
 
 

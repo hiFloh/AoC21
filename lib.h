@@ -12,6 +12,7 @@
 #include <vector>
 #include <chrono>
 #include <iostream>
+#include <iomanip>
 #include "TimeMeasure.h"
 /**
  *
@@ -51,14 +52,22 @@ std::vector<T> readFile(std::string filename)
  * @return vector containing all parts
  */
 std::vector<std::string> stringSplit(std::string src,std::string pattern);
-
+/**
+ * @brief c++ styled commandline arguments
+ */
 using arguments=std::vector<std::string>;
 
+/**
+ * @brief executes a class representing a Day of AoC
+ * and prints results and time to std::cout
+ * @tparam T class to execute
+ * @param args commandline arguments
+ * @return
+ */
 template<typename T>
 int executeDay(arguments args)
 {
-    std::string  filename="../D6/D6.txt";
-    filename="../test.txt";
+    std::string  filename="../test.txt";
     if(args.size()>=2)
     {
         filename=args[1];
@@ -71,7 +80,8 @@ int executeDay(arguments args)
     auto t2=TimeMeasure::from();
     int p2=T::P2(input);
     t2.stop();
-    std::cout<<"\nPart1: "<<p1 <<" after "<<t1.getDurationInMicroseconds()<<"us \nPart2: "<<p2<<" after "<<t2.getDurationInMicroseconds()<<"us"<<std::endl;
+    std::cout<<"\nPart1: "<<std::setw(3)<<t1.getDuration()<<t1.getDurationUnit()<<" for "<<p1 <<std::endl;
+    std::cout<<"\nPart2: "<<std::setw(3)<<t2.getDuration()<<t2.getDurationUnit()<<" for "<<p2 <<std::endl;
     return 0;
 }
 
