@@ -6,20 +6,22 @@
 #define AOC21_D7_H
 #include "vector"
 #include "iostream"
-class Fish{
+class CrabSubmarine{
 public:
-    Fish();
-    bool grow();
-    size_t getAge() const;
-    friend std::istream & operator>>(std::istream&ist,Fish & f);
-private:
-    short age;
-};
-std::istream & operator>>(std::istream&ist,Fish & f);
+//    CrabSubmarine();
+    size_t getHeight() const;
+    friend std::istream & operator>>(std::istream&ist, CrabSubmarine & f);
+    unsigned long simulate(size_t i);
 
+private:
+    short height;
+};
+std::istream & operator>>(std::istream&ist, CrabSubmarine & f);
+
+bool operator<(CrabSubmarine const& c1, CrabSubmarine const& c2);
 class D7 {
 public:
-    using input_type=int;
+    using input_type=CrabSubmarine;
     static int P1(std::vector<input_type>const &input);
     static int P2(std::vector<input_type>const &input);
 };
