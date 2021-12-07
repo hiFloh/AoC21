@@ -12,6 +12,7 @@
 #include <vector>
 #include <chrono>
 #include <iostream>
+#include "TimeMeasure.h"
 /**
  *
  * @tparam T type of data
@@ -53,6 +54,25 @@ std::vector<std::string> stringSplit(std::string src,std::string pattern);
 
 using arguments=std::vector<std::string>;
 
+template<typename T>
+int executeDay(arguments args)
+{
+    std::string  filename="../D6/D6.txt";
+    filename="../test.txt";
+    if(args.size()>=2)
+    {
+        filename=args[1];
+    }
+    auto input=readFile<typename T::input_type>(filename);
 
+    auto t1=TimeMeasure::from();
+    int p1=T::P1(input);
+    t1.stop();
+    auto t2=TimeMeasure::from();
+    int p2=T::P2(input);
+    t2.stop();
+    std::cout<<"\nPart1: "<<p1 <<" after "<<t1.getDurationInMicroseconds()<<"us \nPart2: "<<p2<<" after "<<t2.getDurationInMicroseconds()<<"us"<<std::endl;
+    return 0;
+}
 
 #endif //AOC21_LIB_H

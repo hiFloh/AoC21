@@ -25,9 +25,8 @@ class D6 {
 public:
     static int mmain(arguments args);
     using input_type=Fish;
-private:
-    static void P1(std::vector<input_type> &input);
-    static void P2(std::vector<input_type> &input);
+    static int P1(std::vector<input_type> const&input);
+    static int P2(std::vector<input_type> const&input);
 };
 
 

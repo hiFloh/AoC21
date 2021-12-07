@@ -185,11 +185,10 @@ std::ostream &operator<<(std::ostream&ost,Matrix<T> mat){
 
 class D5 {
 public:
+    using input_type=line;
     static int mmain(arguments args);
-
-private:
-    static void P1(std::vector<line> &input);
-    static void P2(std::vector<line> &input);
+    static int P1(std::vector<input_type> &input);
+    static int P2(std::vector<line> &input);
 };
 
 

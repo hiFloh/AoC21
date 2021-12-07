@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <execution>
 #include "D6.h"
+#include "../TimeMeasure.h"
 
 int D6::mmain(arguments args) {
     std::string  filename="../D6/D6.txt";
@@ -18,12 +19,18 @@ int D6::mmain(arguments args) {
         filename=args[1];
     }
     auto input=readFile<input_type>(filename);
+
+    auto t1=TimeMeasure::from();
     P1(input);
+    t1.stop();
+    auto t2=TimeMeasure::from();
     P2(input);
+    t2.stop();
+    std::cout<<"Part1: "<<t1.getDurationInMilliseconds()<<"\nPart2: "<<t2.getDurationInMilliseconds()<<std::endl;
     return 0;
 }
 
-void D6::P1(std::vector<input_type> &input) {
+int D6::P1(std::vector<input_type> const&input) {
     auto fishs=input;
     std::copy(fishs.begin(), fishs.end(), std::ostream_iterator<Fish>(std::cout, ","));
     std::cout<<std::endl;
@@ -36,9 +43,10 @@ void D6::P1(std::vector<input_type> &input) {
         }
     }
     std::cout<<fishs.size()<<std::endl;
+    return fishs.size();
 }
 
-void D6::P2(std::vector<input_type> &input) {
+int D6::P2(std::vector<input_type>const &input) {
 
     std::vector<size_t> fishCount;
     fishCount.resize(9);
@@ -60,12 +68,10 @@ void D6::P2(std::vector<input_type> &input) {
     size_t count=0;
     for(auto f:fishCount)
         count+=f;
+    return count;
 }
 
 Fish::Fish():age(8) {
-//26984457539
-//1976596756
-//2469055592
 }
 
 bool Fish::grow() {

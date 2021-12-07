@@ -20,7 +20,7 @@ int D5::mmain(arguments args) {
     return 0;
 }
 
-void D5::P1(std::vector<line> &input) {
+int D5::P1(std::vector<line> &input) {
     Matrix<size_t> matrix;
     for(auto i:input)
     {
@@ -65,10 +65,11 @@ void D5::P1(std::vector<line> &input) {
         }
     }
     // print result
-    std::cout<<matrix<<std::endl;
+    //std::cout<<matrix<<std::endl;
     std::cout<<"P1: "<<count;
+    return count;
 }
-void D5::P2(std::vector<line> &input) {
+int D5::P2(std::vector<line> &input) {
     Matrix<size_t> matrix;
     for(auto i:input)
     {
@@ -144,8 +145,9 @@ void D5::P2(std::vector<line> &input) {
         }
     }
     // print results
-    std::cout<<matrix<<std::endl;
+    //std::cout<<matrix<<std::endl;
     std::cout<<"P2: "<<count;
+    return count;
 }
 
 std::istream &operator>>(std::istream &ist, line &l) {
