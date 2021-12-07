@@ -24,7 +24,20 @@ int D7::P1(std::vector<input_type>const &input) {
 }
 
 int D7::P2(const std::vector<input_type> &input) {
-    return 0;
+    auto max=std::max_element(input.cbegin(),input.cend());
+    auto min=std::min_element(input.cbegin(),input.cend());
+
+    std::vector<size_t> heights;
+    heights.resize(max->getHeight()-min->getHeight());
+    for(int i=0;i<heights.size();i++)
+    {
+        for(auto crabSub:input)
+        {
+            heights[i]+=crabSub.simulate2(i);
+        }
+    }
+    auto idealHeight=std::min_element(heights.cbegin(),heights.cend());
+    return *idealHeight;
 }
 
 
@@ -42,6 +55,21 @@ size_t CrabSubmarine::getHeight() const {
 
 unsigned long CrabSubmarine::simulate(size_t i) {
     return i < height ? (height - i) : (i - height);
+}
+
+unsigned int calcFuleV2(unsigned int n) {
+    unsigned int result=0;
+    for(unsigned int i=0;i<n;i++)
+    {
+        result+=i+1;
+    }
+    return result;
+}
+unsigned long CrabSubmarine::simulate2(size_t i) {
+    if (i > height)
+        return calcFuleV2(i - height);
+    else
+        return calcFuleV2(height - i);
 }
 
 

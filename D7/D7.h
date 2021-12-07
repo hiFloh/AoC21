@@ -12,9 +12,10 @@ public:
     size_t getHeight() const;
     friend std::istream & operator>>(std::istream&ist, CrabSubmarine & f);
     unsigned long simulate(size_t i);
+    unsigned long simulate2(size_t i);
 
 private:
-    short height;
+    unsigned int height;
 };
 std::istream & operator>>(std::istream&ist, CrabSubmarine & f);
 
@@ -26,5 +27,9 @@ public:
     static int P2(std::vector<input_type>const &input);
 };
 
+/*
+ * Part1: 345197 after 35818us
+Part2: 96361606 after 3747586us
 
+ */
 #endif //AOC21_D7_H
