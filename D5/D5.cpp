@@ -21,7 +21,7 @@ int D5::mmain(arguments args) {
 }
 
 int D5::P1(std::vector<line> &input) {
-    Matrix<size_t> matrix;
+    Matrix2D<size_t> matrix;
     for(auto i:input)
     {
         if(i.isHorizontal())
@@ -70,7 +70,7 @@ int D5::P1(std::vector<line> &input) {
     return count;
 }
 int D5::P2(std::vector<line> &input) {
-    Matrix<size_t> matrix;
+    Matrix2D<size_t> matrix;
     for(auto i:input)
     {
         if(i.isHorizontal())

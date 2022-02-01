@@ -8,8 +8,8 @@
 
 #ifndef AOC21_D7_H
 #define AOC21_D7_H
-#include "vector"
-#include "iostream"
+#include <vector>
+#include <iostream>
 class CrabSubmarine{
 public:
     size_t getHeight() const;

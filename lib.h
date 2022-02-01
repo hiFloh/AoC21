@@ -34,8 +34,9 @@ std::vector<T> readFile(std::string filename)
         while (file.good())
         {
             T x;
-            file >> x;
             if(!file.eof()) {
+                file >> x;
+
                 values.push_back(x);
             }
         }

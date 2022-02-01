@@ -13,6 +13,7 @@
 #include <iostream>
 #include <D6/D6.h>
 #include <D7/D7.h>
+#include <D8/D8.h>
 
 int main(int argc,char**argv) {
     std::vector<std::string> args;
@@ -41,6 +42,10 @@ int main(int argc,char**argv) {
                 return executeDay<D6>(args);
             case 7:
                 return executeDay<D7>(args);
+            case 8:
+                return executeDay<D8>(args);
+//            case 9:
+//                return executeDay<D9>(args);
         }
     }
     else

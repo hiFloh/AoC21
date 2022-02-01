@@ -78,7 +78,7 @@ std::istream & operator>>(std::istream & ist,line & l);
  * @tparam T
  */
 template<class T>
-class Matrix{
+class Matrix2D{
 public:
     /**
      * sets the size of the matrix
@@ -119,19 +119,19 @@ public:
      */
     T& get(size_t x,size_t y);
 
-//    std::vector<T> operator[](std::size_t pos);
+//    std::vector<T> operator[](std::size_t matrix_position);
 private:
     size_t ysize=0;
     std::vector<std::vector<T>> board;
 };
 
 //template<class T>
-//std::vector<T> Matrix<T>::operator[](std::size_t pos) {
-//    return board[pos];
+//std::vector<T> Matrix2D<T>::operator[](std::size_t matrix_position) {
+//    return board[matrix_position];
 //}
 
 template<class T>
-void Matrix<T>::resizey(size_t y) {
+void Matrix2D<T>::resizey(size_t y) {
     ysize=y+1;
     for(auto r=board.begin();r!=board.end();r++)
     {
@@ -140,20 +140,20 @@ void Matrix<T>::resizey(size_t y) {
 }
 
 template<class T>
-void Matrix<T>::resizex(size_t x) {
+void Matrix2D<T>::resizex(size_t x) {
     board.resize(x+1);
     resizey(ysize-1);
 }
 
 template<class T>
-void Matrix<T>::resize(size_t x, size_t y) {
+void Matrix2D<T>::resize(size_t x, size_t y) {
 
     board.resize(x);
     resizey(y);
 }
 
 template<class T>
-void Matrix<T>::set(size_t x, size_t y, T val) {
+void Matrix2D<T>::set(size_t x, size_t y, T val) {
     if(y>ysize)
         resizey(y);
     if(x>board.size())
@@ -162,7 +162,7 @@ void Matrix<T>::set(size_t x, size_t y, T val) {
 }
 
 template<class T>
-T& Matrix<T>::get(size_t x, size_t y) {
+T& Matrix2D<T>::get(size_t x, size_t y) {
     if(y+1>(ysize))
         resizey(y);
     if(x+1>(board.size()))
@@ -170,7 +170,7 @@ T& Matrix<T>::get(size_t x, size_t y) {
     return board[x][y];
 }
 template<typename T>
-std::ostream &operator<<(std::ostream&ost,Matrix<T> mat){
+std::ostream &operator<<(std::ostream&ost,Matrix2D<T> mat){
     for(auto y=0;y<mat.sizeX();y++)
     {
         for(auto x=0;x<mat.sizeY();x++)

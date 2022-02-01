@@ -34,7 +34,7 @@ public:
 
 private:
     /**
-     * checks row num for winn
+     * checks row pos for winn
      * @param num
      * @return true if entire row has been hit
      * @return false if no win in selected row
@@ -42,7 +42,7 @@ private:
     bool testRow(size_t num);
 
     /**
-     * checks col num for winn
+     * checks col pos for winn
      * @param num
      * @return true if entire col has been hit
      * @return false if no win in selected col
